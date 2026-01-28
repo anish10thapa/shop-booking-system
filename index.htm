@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate Shop - Premium Retail Mart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-dark: #0a0e27;
+            --secondary-dark: #141b34;
+            --accent-gold: #f4a531;
+            --accent-cyan: #00d4ff;
+            --text-light: #e8eaf6;
+            --text-muted: #9fa8da;
+            --card-bg: rgba(20, 27, 52, 0.6);
+            --card-hover: rgba(244, 165, 49, 0.1);
+            --success-green: #4caf50;
+            --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 0 20px rgba(244, 165, 49, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(244, 165, 49, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            box-shadow: var(--shadow-soft);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(244, 165, 49, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.9rem 1.2rem 0.9rem 3rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(244, 165, 49, 0.2);
+            border-radius: 50px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(244, 165, 49, 0.1);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+        }
+
+        .category-select {
+            padding: 0.9rem 2.5rem 0.9rem 1.2rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(244, 165, 49, 0.2);
+            border-radius: 50px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23f4a531' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+
+        .category-select:hover {
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-light), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Category Section */
+        .category-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(244, 165, 49, 0.3);
+        }
+
+        .category-icon {
+            font-size: 2rem;
+        }
+
+        .category-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        /* Product Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(244, 165, 49, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-gold);
+            box-shadow: var(--shadow-glow);
+            background: rgba(20, 27, 52, 0.8);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+            min-height: 2.5rem;
+        }
+
+        .product-description {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+            min-height: 2.5rem;
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 1.2rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .product-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 0.5rem;
+        }
+
+        .quantity-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            flex: 1;
+        }
+
+        .qty-btn {
+            width: 35px;
+            height: 35px;
+            border: 1px solid rgba(244, 165, 49, 0.3);
+            background: rgba(244, 165, 49, 0.1);
+            color: var(--accent-gold);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .qty-display {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .book-btn {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+            border: none;
+            padding: 0.9rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .book-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            background: linear-gradient(135deg, #2ee375, #14a085);
+        }
+
+        .book-btn:active {
+            transform: translateY(0);
+        }
+
+        .add-to-cart-btn {
+            background: linear-gradient(135deg, var(--accent-gold), #d4941f);
+            color: var(--primary-dark);
+            border: none;
+            padding: 0.9rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(244, 165, 49, 0.3);
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(244, 165, 49, 0.5);
+            background: linear-gradient(135deg, #f4b631, #e0a020);
+        }
+
+        .add-to-cart-btn:active {
+            transform: translateY(0);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .button-group button {
+            flex: 1;
+        }
+
+        /* Floating Cart */
+        .floating-cart {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 380px;
+            max-height: 500px;
+            background: rgba(10, 14, 39, 0.98);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--accent-gold);
+            border-radius: 20px;
+            box-shadow: var(--shadow-glow);
+            z-index: 999;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .floating-cart.minimized {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .cart-header {
+            background: linear-gradient(135deg, var(--accent-gold), #d4941f);
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .cart-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        .cart-count {
+            background: var(--primary-dark);
+            color: var(--accent-gold);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .cart-toggle {
+            background: none;
+            border: none;
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .floating-cart.minimized .cart-header {
+            padding: 0;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            justify-content: center;
+        }
+
+        .floating-cart.minimized .cart-title span {
+            display: none;
+        }
+
+        .floating-cart.minimized .cart-toggle {
+            display: none;
+        }
+
+        .cart-items {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .cart-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.8rem;
+            border-radius: 10px;
+            margin-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .cart-item-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .cart-item-qty {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0 0.5rem;
+        }
+
+        .cart-item-price {
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+
+        .cart-footer {
+            padding: 1rem;
+            border-top: 1px solid rgba(244, 165, 49, 0.2);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .send-all-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .send-all-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+        }
+
+        /* Scrollbar Styling */
+        .cart-items::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .cart-items::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .cart-items::-webkit-scrollbar-thumb {
+            background: var(--accent-gold);
+            border-radius: 10px;
+        }
+
+        /* Hidden Elements */
+        .floating-cart.minimized .cart-items,
+        .floating-cart.minimized .cart-footer {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-container {
+                max-width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+
+            .floating-cart {
+                width: calc(100% - 2rem);
+                right: 1rem;
+                bottom: 1rem;
+            }
+
+            .category-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .button-group button {
+                width: 100%;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+            }
+
+            .modal-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .loading {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Customer Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--secondary-dark), var(--primary-dark));
+            border: 2px solid var(--accent-gold);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: var(--shadow-glow);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-gold);
+        }
+
+        .modal-body {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(244, 165, 49, 0.2);
+            border-radius: 12px;
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(244, 165, 49, 0.1);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .modal-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        .modal-btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-light);
+            border: 1px solid rgba(244, 165, 49, 0.2);
+        }
+
+        .modal-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--accent-gold);
+        }
+
+        .remove-cart-item {
+            background: rgba(255, 59, 48, 0.2);
+            color: #ff3b30;
+            border: none;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .remove-cart-item:hover {
+            background: rgba(255, 59, 48, 0.4);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🛒 The Ultimate Shop</div>
+            
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search for products...">
+            </div>
+            
+            <select class="category-select" id="categorySelect">
+                <option value="">All Categories</option>
+                <option value="rice-grains">Rice & Grains</option>
+                <option value="dal-pulses">Dal & Pulses</option>
+                <option value="cooking-oil">Cooking Oil & Ghee</option>
+                <option value="dairy-eggs">Dairy & Eggs</option>
+                <option value="snacks-noodles">Snacks & Noodles</option>
+                <option value="personal-care">Personal Care</option>
+                <option value="household">Household & Cleaning</option>
+            </select>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to The Ultimate Shop</h1>
+        <p>Premium quality products at your doorstep. Book instantly via WhatsApp!</p>
+    </section>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Rice & Grains -->
+        <section class="category-section" id="rice-grains">
+            <div class="category-header">
+                <span class="category-icon">🌾</span>
+                <h2 class="category-title">Rice & Grains</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-name="Jeera Masino Rice 1kg" data-price="130">
+                    <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=300&fit=crop" alt="Jeera Masino Rice" class="product-image">
+                    <h3 class="product-name">Jeera Masino Rice 1kg</h3>
+                    <p class="product-description">Premium quality aromatic rice, perfect for daily meals</p>
+                    <div class="product-price">Rs. 130</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Mansuli Rice 25kg" data-price="1600">
+                    <img src="https://images.unsplash.com/photo-1516684732162-798a0062be99?w=400&h=300&fit=crop" alt="Mansuli Rice" class="product-image">
+                    <h3 class="product-name">Mansuli Rice 25kg</h3>
+                    <p class="product-description">High-quality Mansuli rice in bulk, great value for families</p>
+                    <div class="product-price">Rs. 1,600</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Basmati Rice 5kg" data-price="850">
+                    <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400&h=300&fit=crop" alt="Basmati Rice" class="product-image">
+                    <h3 class="product-name">Basmati Rice 5kg</h3>
+                    <p class="product-description">Fragrant long-grain basmati rice for special occasions</p>
+                    <div class="product-price">Rs. 850</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Chiura (Beaten Rice) 1kg" data-price="85">
+                    <img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?w=400&h=300&fit=crop" alt="Chiura Beaten Rice" class="product-image">
+                    <h3 class="product-name">Chiura (Beaten Rice) 1kg</h3>
+                    <p class="product-description">Traditional Nepali beaten rice, ready to eat</p>
+                    <div class="product-price">Rs. 85</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dal & Pulses -->
+        <section class="category-section" id="dal-pulses">
+            <div class="category-header">
+                <span class="category-icon">🫘</span>
+                <h2 class="category-title">Dal & Pulses</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-name="Musuro Dal 1kg" data-price="150">
+                    <img src="https://images.unsplash.com/photo-1589621316382-008455b857cd?w=400&h=300&fit=crop" alt="Musuro Dal" class="product-image">
+                    <h3 class="product-name">Musuro Dal 1kg</h3>
+                    <p class="product-description">Red lentils, rich in protein and perfect for dal</p>
+                    <div class="product-price">Rs. 150</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Moong Dal 1kg" data-price="185">
+                    <img src="https://images.unsplash.com/photo-1626200419199-391ae4be7a41?w=400&h=300&fit=crop" alt="Moong Dal" class="product-image">
+                    <h3 class="product-name">Moong Dal 1kg</h3>
+                    <p class="product-description">Split green gram, nutritious and easy to digest</p>
+                    <div class="product-price">Rs. 185</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Chana Dal 1kg" data-price="120">
+                    <img src="https://images.unsplash.com/photo-1606855473372-5163f98e6934?w=400&h=300&fit=crop" alt="Chana Dal" class="product-image">
+                    <h3 class="product-name">Chana Dal 1kg</h3>
+                    <p class="product-description">Split chickpeas, ideal for various Nepali dishes</p>
+                    <div class="product-price">Rs. 120</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cooking Oil & Ghee -->
+        <section class="category-section" id="cooking-oil">
+            <div class="category-header">
+                <span class="category-icon">🛢️</span>
+                <h2 class="category-title">Cooking Oil & Ghee</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-name="Mustard Oil 1L" data-price="360">
+                    <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&h=300&fit=crop" alt="Mustard Oil" class="product-image">
+                    <h3 class="product-name">Mustard Oil 1L</h3>
+                    <p class="product-description">Pure mustard oil for authentic Nepali cooking</p>
+                    <div class="product-price">Rs. 360</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Sunflower Oil 5L" data-price="1450">
+                    <img src="https://images.unsplash.com/photo-1608181831042-c1a052b66c51?w=400&h=300&fit=crop" alt="Sunflower Oil" class="product-image">
+                    <h3 class="product-name">Sunflower Oil 5L</h3>
+                    <p class="product-description">Light and healthy cooking oil for everyday use</p>
+                    <div class="product-price">Rs. 1,450</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Cow Ghee 500ml" data-price="829">
+                    <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=400&h=300&fit=crop" alt="Cow Ghee" class="product-image">
+                    <h3 class="product-name">Cow Ghee 500ml</h3>
+                    <p class="product-description">Pure cow ghee, adds rich flavor to your meals</p>
+                    <div class="product-price">Rs. 829</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dairy & Eggs -->
+        <section class="category-section" id="dairy-eggs">
+            <div class="category-header">
+                <span class="category-icon">🥛</span>
+                <h2 class="category-title">Dairy & Eggs</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-name="Milk 1L" data-price="90">
+                    <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&h=300&fit=crop" alt="Milk" class="product-image">
+                    <h3 class="product-name">Milk 1L</h3>
+                    <p class="product-description">Fresh dairy milk delivered daily</p>
+                    <div class="product-price">Rs. 90</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Curd 500ml" data-price="80">
+                    <img src="https://images.unsplash.com/photo-1571212515416-fca988e29a63?w=400&h=300&fit=crop" alt="Curd" class="product-image">
+                    <h3 class="product-name">Curd 500ml</h3>
+                    <p class="product-description">Creamy and fresh yogurt, perfect with meals</p>
+                    <div class="product-price">Rs. 80</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Eggs (12 pcs)" data-price="180">
+                    <img src="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&h=300&fit=crop" alt="Eggs" class="product-image">
+                    <h3 class="product-name">Eggs (12 pcs)</h3>
+                    <p class="product-description">Farm-fresh eggs, packed with protein</p>
+                    <div class="product-price">Rs. 180</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Snacks & Noodles -->
+        <section class="category-section" id="snacks-noodles">
+            <div class="category-header">
+                <span class="category-icon">🍜</span>
+                <h2 class="category-title">Snacks & Noodles</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-name="Wai Wai Noodles (5 pack)" data-price="195">
+                    <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=300&fit=crop" alt="Wai Wai Noodles" class="product-image">
+                    <h3 class="product-name">Wai Wai Noodles (5 pack)</h3>
+                    <p class="product-description">Nepal's favorite instant noodles, 5-pack bundle</p>
+                    <div class="product-price">Rs. 195</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Kurkure" data-price="40">
+                    <img src="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=400&h=300&fit=crop" alt="Kurkure" class="product-image">
+                    <h3 class="product-name">Kurkure</h3>
+                    <p class="product-description">Crunchy and tasty snack for any time</p>
+                    <div class="product-price">Rs. 40</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Current Noodles" data-price="50">
+                    <img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400&h=300&fit=crop" alt="Current Noodles" class="product-image">
+                    <h3 class="product-name">Current Noodles</h3>
+                    <p class="product-description">Delicious instant noodles, quick meal solution</p>
+                    <div class="product-price">Rs. 50</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Care -->
+        <section class="category-section" id="personal-care">
+            <div class="category-header">
+                <span class="category-icon">🧴</span>
+                <h2 class="category-title">Personal Care</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-name="Sunsilk Shampoo 650ml" data-price="800">
+                    <img src="https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop" alt="Sunsilk Shampoo" class="product-image">
+                    <h3 class="product-name">Sunsilk Shampoo 650ml</h3>
+                    <p class="product-description">Silky smooth hair care shampoo</p>
+                    <div class="product-price">Rs. 800</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Head & Shoulders 650ml" data-price="800">
+                    <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=400&h=300&fit=crop" alt="Head & Shoulders Shampoo" class="product-image">
+                    <h3 class="product-name">Head & Shoulders 650ml</h3>
+                    <p class="product-description">Anti-dandruff shampoo for healthy scalp</p>
+                    <div class="product-price">Rs. 800</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Colgate Toothpaste" data-price="225">
+                    <img src="https://images.unsplash.com/photo-1622597467836-f3c7ca9d2d5c?w=400&h=300&fit=crop" alt="Colgate Toothpaste" class="product-image">
+                    <h3 class="product-name">Colgate Toothpaste</h3>
+                    <p class="product-description">Complete oral care protection</p>
+                    <div class="product-price">Rs. 225</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Soap (Lifebuoy/Liril)" data-price="50">
+                    <img src="https://images.unsplash.com/photo-1600857544200-b8346e9ab5c2?w=400&h=300&fit=crop" alt="Soap" class="product-image">
+                    <h3 class="product-name">Soap (Lifebuoy/Liril)</h3>
+                    <p class="product-description">Antibacterial soap for daily hygiene</p>
+                    <div class="product-price">Rs. 50</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Household & Cleaning -->
+        <section class="category-section" id="household">
+            <div class="category-header">
+                <span class="category-icon">🧹</span>
+                <h2 class="category-title">Household & Cleaning</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-name="Detergent Powder 1kg" data-price="155">
+                    <img src="https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=400&h=300&fit=crop" alt="Detergent Powder" class="product-image">
+                    <h3 class="product-name">Detergent Powder 1kg</h3>
+                    <p class="product-description">Powerful cleaning for all your laundry</p>
+                    <div class="product-price">Rs. 155</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Vim Dishwash" data-price="90">
+                    <img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&h=300&fit=crop" alt="Vim Dishwash" class="product-image">
+                    <h3 class="product-name">Vim Dishwash</h3>
+                    <p class="product-description">Effective dishwashing liquid, cuts through grease</p>
+                    <div class="product-price">Rs. 90</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-name="Phenyl Floor Cleaner 1L" data-price="80">
+                    <img src="https://images.unsplash.com/photo-1585421514738-01798e348b17?w=400&h=300&fit=crop" alt="Phenyl Floor Cleaner" class="product-image">
+                    <h3 class="product-name">Phenyl Floor Cleaner 1L</h3>
+                    <p class="product-description">Disinfectant floor cleaner for a spotless home</p>
+                    <div class="product-price">Rs. 80</div>
+                    <div class="product-controls">
+                        <div class="quantity-control">
+                            <span class="quantity-label">Quantity:</span>
+                            <button class="qty-btn" onclick="decreaseQty(this)">−</button>
+                            <span class="qty-display">1</span>
+                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
+                        </div>
+                        <div class="button-group">
+                            <button class="add-to-cart-btn" onclick="addToCartBtn(this)">
+                                <span>🛒</span> Add to Cart
+                            </button>
+                            <button class="book-btn" onclick="bookProduct(this)">
+                                <span>📱</span> Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Floating Cart -->
+    <div class="floating-cart" id="floatingCart">
+        <div class="cart-header" onclick="toggleCart()">
+            <div class="cart-title">
+                <span>🛒</span>
+                <span>Booking Cart</span>
+                <div class="cart-count" id="cartCount">0</div>
+            </div>
+            <button class="cart-toggle">−</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">Your cart is empty</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">Rs. 0</span>
+            </div>
+            <button class="send-all-btn" onclick="sendAllToWhatsApp()">
+                <span>📱</span> Send Full Booking to WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Customer Details Modal -->
+    <div class="modal-overlay" id="customerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">📋 Customer Details</h2>
+                <button class="modal-close" onclick="closeCustomerModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Your Name *</label>
+                    <input type="text" class="form-input" id="customerNameInput" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone Number (Optional)</label>
+                    <input type="tel" class="form-input" id="customerPhoneInput" placeholder="Enter your phone number">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary" onclick="closeCustomerModal()">Cancel</button>
+                <button class="modal-btn modal-btn-primary" onclick="confirmBooking()">
+                    📱 Send to WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global cart state
+        let cart = [];
+        let customerName = '';
+        const WHATSAPP_NUMBER = '9779706984499';
+
+        // Quantity control functions
+        function increaseQty(btn) {
+            const qtyDisplay = btn.previousElementSibling;
+            let qty = parseInt(qtyDisplay.textContent);
+            qty++;
+            qtyDisplay.textContent = qty;
+        }
+
+        function decreaseQty(btn) {
+            const qtyDisplay = btn.nextElementSibling;
+            let qty = parseInt(qtyDisplay.textContent);
+            if (qty > 1) {
+                qty--;
+                qtyDisplay.textContent = qty;
+            }
+        }
+
+        // Add to Cart button
+        function addToCartBtn(btn) {
+            const card = btn.closest('.product-card');
+            const productName = card.dataset.name;
+            const price = card.dataset.price;
+            const qty = card.querySelector('.qty-display').textContent;
+
+            addToCart(productName, price, qty);
+            
+            // Visual feedback
+            btn.textContent = '✓ Added!';
+            btn.style.background = 'linear-gradient(135deg, #4caf50, #45a049)';
+            setTimeout(() => {
+                btn.innerHTML = '<span>🛒</span> Add to Cart';
+                btn.style.background = '';
+            }, 1500);
+        }
+
+        // Book individual product
+        function bookProduct(btn) {
+            const card = btn.closest('.product-card');
+            const productName = card.dataset.name;
+            const price = card.dataset.price;
+            const qty = card.querySelector('.qty-display').textContent;
+
+            // Generate WhatsApp message
+            const message = `Hello The Ultimate Shop, I want to book:%0A%0A${productName}%0AQuantity: ${qty}%0APrice: Rs. ${price} each`;
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Add item to cart
+        function addToCart(name, price, qty) {
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.qty = parseInt(qty);
+            } else {
+                cart.push({
+                    name: name,
+                    price: parseInt(price),
+                    qty: parseInt(qty)
+                });
+            }
+            
+            updateCart();
+        }
+
+        // Remove item from cart
+        function removeFromCart(itemName) {
+            cart = cart.filter(item => item.name !== itemName);
+            updateCart();
+        }
+
+        // Update cart display
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+                cartCount.textContent = '0';
+                cartTotal.textContent = 'Rs. 0';
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+            let totalItems = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.qty;
+                total += itemTotal;
+                totalItems += item.qty;
+                
+                html += `
+                    <div class="cart-item">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-qty">×${item.qty}</div>
+                        <div class="cart-item-price">Rs. ${itemTotal.toLocaleString()}</div>
+                        <button class="remove-cart-item" onclick="removeFromCart('${item.name}')">×</button>
+                    </div>
+                `;
+            });
+
+            cartItems.innerHTML = html;
+            cartCount.textContent = totalItems;
+            cartTotal.textContent = `Rs. ${total.toLocaleString()}`;
+        }
+
+        // Show customer name modal
+        function showCustomerModal() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            document.getElementById('customerModal').classList.add('active');
+            document.getElementById('customerNameInput').focus();
+        }
+
+        // Close modal
+        function closeCustomerModal() {
+            document.getElementById('customerModal').classList.remove('active');
+        }
+
+        // Send all cart items to WhatsApp with customer name
+        function sendAllToWhatsApp() {
+            showCustomerModal();
+        }
+
+        // Confirm and send booking
+        function confirmBooking() {
+            const nameInput = document.getElementById('customerNameInput');
+            const phoneInput = document.getElementById('customerPhoneInput');
+            const name = nameInput.value.trim();
+            const phone = phoneInput.value.trim();
+
+            if (!name) {
+                alert('Please enter your name');
+                nameInput.focus();
+                return;
+            }
+
+            customerName = name;
+            let message = `Hello The Ultimate Shop,%0A%0A`;
+            message += `*Customer Details:*%0A`;
+            message += `Name: ${customerName}%0A`;
+            if (phone) {
+                message += `Phone: ${phone}%0A`;
+            }
+            message += `%0A*Order Details:*%0A`;
+            
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.qty;
+                total += itemTotal;
+                message += `• ${item.name}%0A  Qty: ${item.qty} | Rs. ${itemTotal.toLocaleString()}%0A`;
+            });
+
+            message += `%0A*Total Amount: Rs. ${total.toLocaleString()}*`;
+
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+            
+            // Clear form and close modal
+            nameInput.value = '';
+            phoneInput.value = '';
+            closeCustomerModal();
+            
+            // Optional: Clear cart after sending
+            // cart = [];
+            // updateCart();
+        }
+
+        // Toggle cart visibility
+        function toggleCart() {
+            const cart = document.getElementById('floatingCart');
+            cart.classList.toggle('minimized');
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const productCards = document.querySelectorAll('.product-card');
+
+            productCards.forEach(card => {
+                const productName = card.dataset.name.toLowerCase();
+                if (productName.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Category filter
+        document.getElementById('categorySelect').addEventListener('change', function(e) {
+            const category = e.target.value;
+            
+            if (category === '') {
+                // Show all
+                document.querySelectorAll('.category-section').forEach(section => {
+                    section.style.display = 'block';
+                });
+            } else {
+                // Hide all, then show selected
+                document.querySelectorAll('.category-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                const selectedSection = document.getElementById(category);
+                if (selectedSection) {
+                    selectedSection.style.display = 'block';
+                    selectedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+
+        // Handle Enter key in modal
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCart();
+            
+            const modal = document.getElementById('customerModal');
+            modal.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    confirmBooking();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
